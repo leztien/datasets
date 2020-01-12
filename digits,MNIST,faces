@@ -1,0 +1,19 @@
+from sklearn.datasets import load_digits, fetch_mldata, fetch_openml, fetch_lfw_people
+
+#digits
+d = load_digits()
+pl = d.images        # shape = (1797, 8, 8)
+X = d.data           # shape = (1797, 64)
+y = d.target
+classes_list = d.target_names
+
+#MNIST dataset
+d = fetch_mldata('MNIST original')                            #DEPRECATED
+X, y = fetch_openml('mnist_784', version=1, return_X_y=True)  #EXPERIMENTAL
+
+#faces
+d = fetch_lfw_people(min_faces_per_person=20, resize=0.7)
+pn = d.images    #3023 pics x 87 rows x 65 columns     #subset: 2063 instead of 3023
+X = d.data       #3023 pics x 5655 pixels              #subset: 2063 instead of 3023
+y = d.target     #3023 integers denoting a person      #subset: 2063 instead of 3023
+people_names = d.target_names # array of 62 unique strings denoting a peerson (in alphabetical order)
